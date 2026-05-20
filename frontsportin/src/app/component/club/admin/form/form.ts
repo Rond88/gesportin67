@@ -41,6 +41,8 @@ export class ClubAdminForm implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       direccion: [''],
       telefono: [''],
+      latitud: [null, [Validators.min(-90), Validators.max(90)]],
+      longitud: [null, [Validators.min(-180), Validators.max(180)]],
       fechaAlta: [new Date().toISOString().split('T')[0], Validators.required],
       imagen: [null],
     });
@@ -55,6 +57,8 @@ export class ClubAdminForm implements OnInit {
       nombre: this.club.nombre,
       direccion: this.club.direccion,
       telefono: this.club.telefono,
+      latitud: this.club.latitud ?? null,
+      longitud: this.club.longitud ?? null,
       fechaAlta: fechaAltaInput,
       imagen: this.club.imagen || null,
     });
@@ -88,6 +92,8 @@ export class ClubAdminForm implements OnInit {
       nombre: this.clubForm.value.nombre,
       direccion: this.clubForm.value.direccion,
       telefono: this.clubForm.value.telefono,
+      latitud: this.clubForm.value.latitud,
+      longitud: this.clubForm.value.longitud,
       fechaAlta: fechaConHora,
       imagen: this.clubForm.value.imagen || null,
       ...(this.isEditMode

@@ -68,6 +68,8 @@ export class PartidoAdminForm implements OnInit {
       resultado: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]],
       fecha: [null],
       lugar: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      latitud: [null, [Validators.min(-90), Validators.max(90)]],
+      longitud: [null, [Validators.min(-180), Validators.max(180)]],
       id_estadopartido: [null],
       comentario: [''],
     });
@@ -82,6 +84,8 @@ export class PartidoAdminForm implements OnInit {
       resultado: partido.resultado,
       fecha: partido.fecha ? partido.fecha.substring(0, 16) : null,
       lugar: partido.lugar,
+      latitud: partido.latitud ?? null,
+      longitud: partido.longitud ?? null,
       id_estadopartido: partido.estadopartido?.id ?? null,
       comentario: partido.comentario ?? '',
     });
@@ -153,6 +157,8 @@ export class PartidoAdminForm implements OnInit {
       resultado: this.partidoForm.value.resultado,
       fecha: this.partidoForm.value.fecha ? toIsoDateTime(this.partidoForm.value.fecha) : null,
       lugar: this.partidoForm.value.lugar,
+      latitud: this.partidoForm.value.latitud,
+      longitud: this.partidoForm.value.longitud,
       comentario: this.partidoForm.value.comentario,
       estadopartido: this.partidoForm.value.id_estadopartido
         ? { id: Number(this.partidoForm.value.id_estadopartido) }

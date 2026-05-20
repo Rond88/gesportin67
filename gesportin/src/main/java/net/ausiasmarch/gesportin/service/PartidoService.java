@@ -91,6 +91,8 @@ public class PartidoService {
         oPartidoExistente.setResultado(oPartidoEntity.getResultado());
         oPartidoExistente.setFecha(oPartidoEntity.getFecha());
         oPartidoExistente.setLugar(oPartidoEntity.getLugar());
+        oPartidoExistente.setLatitud(oPartidoEntity.getLatitud());
+        oPartidoExistente.setLongitud(oPartidoEntity.getLongitud());
         oPartidoExistente.setComentario(oPartidoEntity.getComentario());
         if (oPartidoEntity.getEstadopartido() != null && oPartidoEntity.getEstadopartido().getId() != null) {
             oPartidoExistente.setEstadopartido(oEstadopartidoService.get(oPartidoEntity.getEstadopartido().getId()));
@@ -134,6 +136,8 @@ public class PartidoService {
             oPartido.setLiga(oLigaService.getOneRandom());
             oPartido.setLocal(oAleatorioService.generarNumeroAleatorioEnteroEnRango(0, 1) == 1);
             oPartido.setLugar(oAleatorioService.generarNombreLugarAleatorio());
+            oPartido.setLatitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-90.0, 90.0));
+            oPartido.setLongitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-180.0, 180.0));
 
             // Fecha entre -180 días (pasado) y +90 días (futuro)
             int diasOffset = oAleatorioService.generarNumeroAleatorioEnteroEnRango(-180, 90);

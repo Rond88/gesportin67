@@ -85,6 +85,9 @@ public class ClubService {
     private SessionService oSessionService;
 
     @Autowired
+    private AleatorioService oAleatorioService;
+
+    @Autowired
     private TipousuarioRepository oTipousuarioRepository;
 
     @Autowired
@@ -165,6 +168,8 @@ public class ClubService {
         oClubExistente.setDireccion(oClubEntity.getDireccion());
         oClubExistente.setTelefono(oClubEntity.getTelefono());
         oClubExistente.setFechaAlta(oClubEntity.getFechaAlta());
+        oClubExistente.setLatitud(oClubEntity.getLatitud());
+        oClubExistente.setLongitud(oClubEntity.getLongitud());
         return oClubRepository.save(oClubExistente);
     }
 
@@ -207,6 +212,8 @@ public class ClubService {
             oClub.setDireccion(direccion);
             oClub.setTelefono("6" + (random.nextInt(900000) + 1000000));
             oClub.setFechaAlta(LocalDateTime.now());
+            oClub.setLatitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-90.0, 90.0));
+            oClub.setLongitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-180.0, 180.0));
             // oClub.setImagen(("imagen" + i).getBytes());
             oClubRepository.save(oClub);
         }

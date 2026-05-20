@@ -173,6 +173,8 @@ export class PartidoTeamadminForm implements OnInit {
       resultado: this.partidoForm.value.resultado,
       fecha: this.partidoForm.value.fecha ? toIsoDateTime(this.partidoForm.value.fecha) : null,
       lugar: this.partidoForm.value.lugar,
+      latitud: this.partidoForm.value.latitud,
+      longitud: this.partidoForm.value.longitud,
       comentario: this.partidoForm.value.comentario,
       estadopartido: this.partidoForm.value.id_estadopartido
         ? { id: Number(this.partidoForm.value.id_estadopartido) }
