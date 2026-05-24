@@ -67,6 +67,8 @@ export class PartidoTeamadminForm implements OnInit {
       resultado: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]],
       fecha: [null],
       lugar: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      latitud: [null, [Validators.min(-90), Validators.max(90)]],
+      longitud: [null, [Validators.min(-180), Validators.max(180)]],
       id_estadopartido: [null],
       comentario: [''],
     });
@@ -96,6 +98,8 @@ export class PartidoTeamadminForm implements OnInit {
       resultado: partido.resultado,
       fecha: partido.fecha ? partido.fecha.substring(0, 16) : null,
       lugar: partido.lugar,
+      latitud: partido.latitud ?? null,
+      longitud: partido.longitud ?? null,
       id_estadopartido: partido.estadopartido?.id ?? null,
       comentario: partido.comentario ?? '',
     });
