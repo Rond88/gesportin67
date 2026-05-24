@@ -202,6 +202,7 @@ import { NoticiaUsuarioPlistPage } from './page/noticia/usuario/plist/plist';
 import { NoticiaUsuarioViewPage } from './page/noticia/usuario/view/view';
 import { EquipoUsuarioPlistPage } from './page/equipo/usuario/plist/plist';
 import { EquipoUsuarioViewPage } from './page/equipo/usuario/view/view';
+import { EquipoUsuarioMapPage } from './page/equipo/usuario/map/map';
 import { CuotaUsuarioPlistPage } from './page/cuota/usuario/plist/plist';
 import { CarritoUsuarioTiendaPage } from './page/carrito/usuario/tienda/tienda';
 import { FacturaUsuarioPlistPage } from './page/factura/usuario/plist/plist';
@@ -515,6 +516,7 @@ export const routes: Routes = [
   { path: 'mi/noticias', component: NoticiaUsuarioPlistPage, canActivate: [UsuarioGuard] },
   { path: 'mi/noticias/:id', component: NoticiaUsuarioViewPage, canActivate: [UsuarioGuard] },
   { path: 'mi/equipos', component: EquipoUsuarioPlistPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/equipos/map/:id', component: EquipoUsuarioMapPage, canActivate: [UsuarioGuard] },
   { path: 'mi/equipos/:id', component: EquipoUsuarioViewPage, canActivate: [UsuarioGuard] },
   { path: 'mi/equipos/:id/jugadores', component: JugadorUsuarioEquipoPlistPage, canActivate: [UsuarioGuard] },
   { path: 'mi/cuotas', component: CuotaUsuarioPlistPage, canActivate: [UsuarioGuard] },
