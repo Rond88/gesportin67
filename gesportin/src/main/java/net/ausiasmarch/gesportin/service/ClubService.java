@@ -90,6 +90,11 @@ public class ClubService {
     @Autowired
     private TipousuarioRepository oTipousuarioRepository;
 
+    private static final double SPANISH_MIN_LATITUDE = 27.6;
+    private static final double SPANISH_MAX_LATITUDE = 43.8;
+    private static final double SPANISH_MIN_LONGITUDE = -18.0;
+    private static final double SPANISH_MAX_LONGITUDE = 4.3;
+
     @Autowired
     private RolusuarioRepository oRolusuarioRepository;
 
@@ -212,8 +217,8 @@ public class ClubService {
             oClub.setDireccion(direccion);
             oClub.setTelefono("6" + (random.nextInt(900000) + 1000000));
             oClub.setFechaAlta(LocalDateTime.now());
-            oClub.setLatitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-90.0, 90.0));
-            oClub.setLongitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-180.0, 180.0));
+            oClub.setLatitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(SPANISH_MIN_LATITUDE, SPANISH_MAX_LATITUDE));
+            oClub.setLongitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(SPANISH_MIN_LONGITUDE, SPANISH_MAX_LONGITUDE));
             // oClub.setImagen(("imagen" + i).getBytes());
             oClubRepository.save(oClub);
         }

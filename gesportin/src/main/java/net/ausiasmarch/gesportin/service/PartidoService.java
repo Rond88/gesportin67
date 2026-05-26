@@ -30,6 +30,11 @@ public class PartidoService {
     @Autowired
     private SessionService oSessionService;
 
+    private static final double SPANISH_MIN_LATITUDE = 27.6;
+    private static final double SPANISH_MAX_LATITUDE = 43.8;
+    private static final double SPANISH_MIN_LONGITUDE = -18.0;
+    private static final double SPANISH_MAX_LONGITUDE = 4.3;
+
     public PartidoEntity get(Long id) {
         PartidoEntity e = oPartidoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Partido no encontrado con id: " + id));
@@ -136,8 +141,8 @@ public class PartidoService {
             oPartido.setLiga(oLigaService.getOneRandom());
             oPartido.setLocal(oAleatorioService.generarNumeroAleatorioEnteroEnRango(0, 1) == 1);
             oPartido.setLugar(oAleatorioService.generarNombreLugarAleatorio());
-            oPartido.setLatitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-90.0, 90.0));
-            oPartido.setLongitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(-180.0, 180.0));
+            oPartido.setLatitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(SPANISH_MIN_LATITUDE, SPANISH_MAX_LATITUDE));
+            oPartido.setLongitud(oAleatorioService.generarNumeroAleatorioDecimalEnRango(SPANISH_MIN_LONGITUDE, SPANISH_MAX_LONGITUDE));
 
             // Fecha entre -180 días (pasado) y +90 días (futuro)
             int diasOffset = oAleatorioService.generarNumeroAleatorioEnteroEnRango(-180, 90);
