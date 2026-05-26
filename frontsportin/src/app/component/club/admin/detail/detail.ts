@@ -107,7 +107,14 @@ export class ClubAdminDetail implements OnInit {
     this.mapInstance = window.L.map('clubDetailMap').setView([lat, lng], 14);
     window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
+      noWrap: true,
     }).addTo(this.mapInstance);
+    try {
+      this.mapInstance.setMaxBounds([
+        [-90, -180],
+        [90, 180],
+      ]);
+    } catch (e) {}
     window.L.marker([lat, lng]).addTo(this.mapInstance);
   }
 }

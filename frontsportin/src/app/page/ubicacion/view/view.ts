@@ -54,9 +54,8 @@ export class UbicacionViewPage {
   }
 
   private loadEntity(entity: string, id: number): void {
-    const service$: Observable<IClub | IPartido> = entity === 'club'
-      ? this.clubService.get(id)
-      : this.partidoService.get(id);
+    const service$: Observable<IClub | IPartido> =
+      entity === 'club' ? this.clubService.get(id) : this.partidoService.get(id);
 
     service$.subscribe({
       next: (data: IClub | IPartido) => {
@@ -66,10 +65,10 @@ export class UbicacionViewPage {
         this.currentCoordinates.set(lat != null && lng != null ? `${lat}, ${lng}` : '');
         this.loadLeafletAssets()
           .then(() => {
-              this.loading.set(false);
-              if (lat != null && lng != null) {
-                setTimeout(() => this.initMap(lat, lng), 0);
-              }
+            this.loading.set(false);
+            if (lat != null && lng != null) {
+              setTimeout(() => this.initMap(lat, lng), 0);
+            }
           })
           .catch((err) => {
             this.error.set('Error cargando Leaflet: ' + err);
@@ -127,7 +126,14 @@ export class UbicacionViewPage {
     this.mapInstance = window.L.map('ubicacionMap').setView([lat, lng], 14);
     window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
+      noWrap: true,
     }).addTo(this.mapInstance);
+    try {
+      this.mapInstance.setMaxBounds([
+        [-90, -180],
+        [90, 180],
+      ]);
+    } catch (e) {}
     window.L.marker([lat, lng]).addTo(this.mapInstance);
   }
 

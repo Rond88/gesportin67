@@ -117,7 +117,14 @@ export class EquipoUsuarioMap implements OnInit {
     this.mapInstance = window.L.map(this.mapId).setView([lat, lng], 13);
     window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
+      noWrap: true,
     }).addTo(this.mapInstance);
+    try {
+      this.mapInstance.setMaxBounds([
+        [-90, -180],
+        [90, 180],
+      ]);
+    } catch (e) {}
     window.L.marker([lat, lng]).addTo(this.mapInstance);
   }
 }
